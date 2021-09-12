@@ -21,6 +21,9 @@ class User {
     @UpdateDateColumn()
     updated_at: Date;
 
+    @Column()
+    password: string;
+
     //se vier preenchido é existente, caso contrario é um novo
     constructor() {
         if (!this.id) {
