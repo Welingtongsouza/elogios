@@ -1,14 +1,20 @@
 import { Request, Response, NextFunction } from "express";
+import { getCustomRepository } from "typeorm";
+import { UsersRepositories } from "../repositories/UsersRepositories";
 
 
-export function ensureAdmin(request: Request, response: Response, next: NextFunction) {
-    const admin = true;
+export async function ensureAdmin(request: Request, response: Response, next: NextFunction) {
+    const { user_id } = request;
 
-    if (admin) {
-        return next();
+    const userRepository = getCustomRepository(UsersRepositories);
+
+    const { admin } = await userRepository.findOne(user_id);
+
+    if (!admin) {
+        return response.status(401).json({
+            error: "Acess denied. You need be admin"
+        });
     }
 
-    return response.status(401).json({
-        error: "Acess denied. You need be admin"
-    });
+    return next();
 }
