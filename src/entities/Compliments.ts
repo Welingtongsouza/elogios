@@ -20,7 +20,7 @@ class Compliments {
 
     //estudar isso aqui
     @JoinColumn({ name: "user_receiver" })
-    @ManyToOne(() => User)
+    @ManyToOne(() => User) // primary user to fk user_receiver
     userReceiver: User;
 
     @Column()
