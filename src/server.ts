@@ -10,6 +10,7 @@ import { router } from "./router";
 const app = express();
 app.use(express.json()) // tipo de dados que o servidor vai trabalhar
 
+// app.use(cors()) aceitar request do front-end, tem q instalar yarn add cors yarn add @types
 // middleware use
 app.use(router)
 

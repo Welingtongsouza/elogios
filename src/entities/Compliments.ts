@@ -18,6 +18,7 @@ class Compliments {
     @Column()
     user_receiver: string;
 
+    //estudar isso aqui
     @JoinColumn({ name: "user_receiver" })
     @ManyToOne(() => User)
     userReceiver: User;
